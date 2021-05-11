@@ -7,5 +7,3 @@ This repository includes all files relating to the UWA Full Stack Web Developmen
 URL: https://jacobxthomas.github.io/jacob-thomas-weather-dashboard/
 
 
-# jacob-thomas-weather-dashboard
-# jacob-thomas-weather-dashboard
