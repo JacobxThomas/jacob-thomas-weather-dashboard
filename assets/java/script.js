@@ -35,24 +35,31 @@ function userSearch() {
             method: "GET"
         }).then(function (response) {
 
-            currentData.append("<p>" + "UV Index: " + response.value + " nm" + "</p>")
+            const uvData = currentData.append("<p>" + "UV Index: " + response.value + " nm" + "</p>")
 
-        });
+          //  if (response.value > 0) {
+          //      uvData.style.color = "red"
+          //  } else {
+          //      if (response.value < 5) {
+          //         uvData.style.color = "green"
+          //      }
+          //  };
 
-        $.ajax({
-            url: urlFiveDayForcast,
-            method: "GET"
-        }).then(function (response) {
-            var day = [0, 8, 16, 24, 32];
-            var fiveDayData = $(".fiveDayData");
+            $.ajax({
+                url: urlFiveDayForcast,
+                method: "GET"
+            }).then(function (response) {
+                var day = [0, 8, 16, 24, 32];
+                var fiveDayData = $(".fiveDayData");
 
-            fiveDayData.empty();
+                fiveDayData.empty();
 
-            day.forEach(function (i) {
-                var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
-                FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-AU");
-                fiveDayData.append("<div>" + "<p>" + "Date: " + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + " °C" + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>")
-            })
-        });
+                day.forEach(function (i) {
+                    var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
+                    FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-AU");
+                    fiveDayData.append("<div>" + "<p>" + "Date: " + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + " °C" + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>")
+                })
+            });
+        })
     })
 }
